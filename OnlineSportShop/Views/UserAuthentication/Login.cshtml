@@ -1,0 +1,51 @@
+﻿@model OnlineSportShop.ViewModel.LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- Contact Start -->
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">
+                Login
+            </span>
+        </h2>
+        <div class="row px-xl-5">
+            <div class="col-lg-7 mb-5">
+                <div class="contact-form bg-light p-30">
+                    <div id="success"></div>
+                    <form asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="control-group">
+                            <input type="text" class="form-control"  placeholder="User Name" asp-for="UserName" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="control-group">
+                            <input type="password" class="form-control"  placeholder="Password" asp-for="Password"/>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    @if(TempData["msg"] != null)
+                    {
+                        <div class="msg">
+                            @TempData["msg"]
+                        </div>
+                    }
+                    <div>
+                        <br />
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">
+                                Login
+                            </button>
+                            <br />
+                            <a href="/UserAuthentication/Registration">Not a user!! Click here to Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-5">
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+

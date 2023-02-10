@@ -1,0 +1,60 @@
+﻿@model OnlineSportShop.ViewModel.Pager
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<nav>
+    @if (Model.TotalPages > 0)
+    {
+       <ul class="pagination justify-content-center">
+                @if (Model.CurrentPages == 1)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="1">First</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.CurrentPages - 1)">Previous</a>
+                    </li>
+                }
+                @if (Model.CurrentPages > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.CurrentPages - 1)">Previous</a>
+                    </li>
+                }
+
+                @for (var pge = Model.StartPage; pge <= Model.EndPage; pge++)
+                {
+                    <li class="page-item @(pge == Model.CurrentPages ? "active" : "")">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@pge">@pge</a>
+                    </li>
+
+                }
+                @if (Model.CurrentPages < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.CurrentPages + 1)">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.TotalPages)">Last</a>
+                    </li>
+                }
+                @if (Model.CurrentPages == Model.TotalPages)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.CurrentPages + 1)">Next</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" asp-controller="Home" asp-action="Product" asp-route-pg="@(Model.TotalPages)">Last</a>
+                    </li>
+                }
+        </ul>
+
+    }
+
+</nav>

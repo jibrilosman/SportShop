@@ -1,0 +1,55 @@
+﻿@using Microsoft.Extensions.Options;
+@inject IOptions<OnlineSportShop.Data.StripeSettings> Stripe;
+@model List<ShoppingCart>
+
+@{
+    string userName = User.Identity.Name;
+    var subtotal = @Model.Sum(i => i.Product.Price * i.Qty);
+    var hstCount = subtotal * Convert.ToDecimal(13);
+    var shippingCharge = Convert.ToDecimal(10);
+    var total = shippingCharge + hstCount + subtotal;
+}
+
+<div class="border-bottom pb-2">
+                <div class="d-flex justify-content-between mb-3">
+                    <h6>Product Subtotal</h6>
+                    <h6>$@subtotal</h6>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h6 class="font-weight-medium">Shipping Fee:</h6>
+                    <h6 class="font-weight-medium">@shippingCharge</h6>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h6 class="font-weight-medium">Estimated Taxes</h6>
+                    <h6 class="font-weight-medium">$@hstCount</h6>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h6 class="font-weight-medium">Total Items</h6>
+                    <h6 class="font-weight-medium">@Model.Sum(i=> ((i.Qty)))</h6>
+                </div>
+            </div>
+            <div class="pt-2">
+                <div class="d-flex justify-content-between mt-2">
+                    <h5>Estimated Total</h5>
+                    <h5>$@total</h5>
+                </div>
+            </div>
+
+<div class="text-center">
+  @*<form asp-action="checkout" asp-controller="Carts" method="post">
+        <article>
+            <label>
+                Amount: @subtotal;
+            </label>
+        </article>
+        <script src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="@Stripe.Value.PublishableKey"
+                data-amount="@total"
+                data-name="SportShopApp Payment"
+                data-locale="en"
+                data-label="Confrim Payment - @total">
+
+        </script>
+  </fo*@rm>
+</div>

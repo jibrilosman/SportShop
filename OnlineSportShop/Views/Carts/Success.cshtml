@@ -1,0 +1,99 @@
+﻿@model IEnumerable<OnlineSportShop.Models.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Success";
+}
+
+@{
+    string userName = User.Identity.Name;
+    var subtotal = Model.Sum(i => i.Product.Price * i.Qty);
+    var hstCount = Math.Round(subtotal * Convert.ToDecimal((0.13)));
+    var shippingCharge = Convert.ToDecimal(10);
+    var total = shippingCharge + hstCount + subtotal;
+
+}
+
+
+<h1 class="text text-success text-center">Your Payment was Successful</h1>
+<br />
+<h3 class="text text-primary text-center">Report</h3>
+ 
+@*<input class="btn  btn-primary font-weight-bold my-3 py-3"  name="btnPrint" type="button" value="Print Invoice" onclick="window.print()"/>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Product.Description)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Model.Sum(modelItem => item.Product.Price)
+            </td>
+            
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.CartId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CartId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CartId">Delete</a>
+            </td>*@
+        </tr>
+}
+       <tr class="text text-maroon">
+           <td></td>
+           <td></td>
+           <td></td>
+           <td>Total</td>
+           <td class="text text-maroon">
+               <h5>$@total</h5>
+           </td>
+           
+       </tr>
+    </tbody>
+
+</table>
+<div style="display:flex; justify-content:space-between;">
+    <form asp-action="Index" asp-controller="Home">
+    <button class="btn  btn-primary font-weight-bold my-3 py-3">Back to shop</button>
+    </form>
+    <input class="btn  btn-primary font-weight-bold my-3 py-3"  name="btnPrint" type="button" value="Print Invoice" onclick="window.print()"/>
+</div>
+

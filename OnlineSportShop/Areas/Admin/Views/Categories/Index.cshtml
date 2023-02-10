@@ -1,0 +1,50 @@
+﻿@model List<Category>
+<section class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Category</h3>
+
+                <div class="card-tools">
+                  <div>
+                    <a asp-controller="Categories" asp-action="Create" asp-area="Admin" class="btn btn-success" >Add Category</a> 
+                  </div>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed">
+                  <thead>
+                    <tr>
+                      <th>Category Name</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach (var item in Model)
+                    {
+                            <tr>
+                            <td>@item.CatName</td>
+                            <td>
+                                <img src="~/categoryImages/@item.CatPhoto" alt="" style="width:70px; height:70px;" />
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="Categories" asp-route-id="@item.CatId" class="btn btn-primary border-dark">Edit Category</a>
+                                    <a asp-action="Delete" asp-controller="Categories" asp-route-id="@item.CatId" class="btn btn-danger border-dark">Delete Category</a>
+                            </td>
+
+                            </tr>
+                    }
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>

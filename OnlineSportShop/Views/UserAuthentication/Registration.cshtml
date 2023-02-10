@@ -1,0 +1,61 @@
+﻿@model RegistrationVM
+@{
+    ViewData["Title"] = "Registration";
+}
+
+    <!-- Contact Start -->
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">
+                Register</span>
+        </h2>
+        <div class="row px-xl-5">
+            <div class="col-lg-7 mb-5">
+                <div class="form-group contact-form bg-light p-30">
+                    <div id="success"></div>
+                    <form asp-action="Registration"  method="post">
+                        <div class="control-group">
+                            <input type="text" class="form-control" placeholder="Your Name"asp-for="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="control-group">
+                            <input type="text" class="form-control" placeholder="UserName" asp-for="UserName" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="control-group">
+                            <input type="email" class="form-control" placeholder="Your Email" asp-for="Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="control-group">
+                            <input type="password" class="form-control" placeholder="Password" asp-for="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="control-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password" asp-for="PasswordConfirm" />
+                            <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div>
+                        @if (TempData["msg"] != null)
+                        {
+                            <div class="form-group">
+                                @TempData["msg"]
+                            </div>
+                        }
+                        <button class="btn btn-primary py-2 px-4" type="submit">
+                                SignUp
+                        </button>
+                        <a class="btn btn-info" href="/UserAuthentication/login">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-5">
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
