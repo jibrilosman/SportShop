@@ -3,6 +3,7 @@
 @model List<ShoppingCart>
 
 @{
+
     string userName = User.Identity.Name;
     var subtotal = @Model.Sum(i => i.Product.Price * i.Qty);
     var hstCount = subtotal * Convert.ToDecimal(13);
