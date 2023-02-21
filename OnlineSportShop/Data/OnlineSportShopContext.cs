@@ -14,6 +14,7 @@ namespace OnlineSportShop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
 
     }
 }
