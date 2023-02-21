@@ -198,5 +198,53 @@ namespace OnlineSportShop.Controllers
         }
 
 
+        // WishList 
+        public async Task<IActionResult> Wish()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var result = _context.WishLists
+                .Include(p => p.Product)
+                .Where(u => u.UserId == user.Id)
+                .ToList();
+            return View(result);
+        }
+
+
+        public async Task<IActionResult> AddToWishList(WishList model)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProId == model.ProId);
+            var user = await _userManager.GetUserAsync(User);
+            var cart = new WishList
+            {
+                UserId = user.Id,
+                ProId = product.ProId
+            };
+            var shopcart = _context.WishLists.FirstOrDefault(u => u.UserId == user.Id && u.ProId == model.ProId);
+
+            if (shopcart == null)
+            {
+                _context.WishLists.Add(cart);
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveWish(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var shopcart = _context.WishLists.FirstOrDefault(u => u.UserId == user.Id && u.ProId == id);
+            if (shopcart != null)
+            {
+                _context.WishLists.Remove(shopcart);
+            }
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Wish));
+        }
+
+
+
     }
 }

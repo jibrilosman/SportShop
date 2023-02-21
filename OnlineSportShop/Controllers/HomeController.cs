@@ -79,6 +79,13 @@ namespace OnlineSportShop.Controllers
                 .FirstOrDefault(p => p.ProId == id);
             return View(product);
         }
+
+        public IActionResult WishDetails(int? id)
+        {
+            var product = _context.Products.Include(x => x.Category)
+                .FirstOrDefault(p => p.ProId == id);
+            return View(product);
+        }
         public IActionResult Contact()
         {
             return View();
