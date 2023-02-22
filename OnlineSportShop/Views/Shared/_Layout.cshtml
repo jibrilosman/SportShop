@@ -97,12 +97,12 @@
                              
                         </div>
                         <div class="navbar-nav mr-auto py-0">
-                            @if (User.Identity.IsAuthenticated) 
+                            @if (User.Identity.IsAuthenticated)
                             { 
-                                    <span style="margin-right:5px;">Welcome</span>
-                                    <p>@username </p>
+                                <span style="margin-right:5px;">Welcome</span>
+                                <p>@username </p>  
                             }
-                        </div>
+                         </div>
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -115,7 +115,6 @@
                         }
                         else
                         {
-                           
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                                 <a href="/Carts/Cart" class="btn px-0 ml-3">
                                     <i class="fas fa-shopping-cart text-primary"></i>

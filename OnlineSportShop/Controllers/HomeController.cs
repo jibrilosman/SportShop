@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using OnlineSportShop.Data;
 using OnlineSportShop.Models;
 using OnlineSportShop.ViewModel;
@@ -51,7 +53,7 @@ namespace OnlineSportShop.Controllers
         public IActionResult SearchProduct(string productName)
         {
             var products = _context.Products
-                .Where(p => p.ProName == productName)
+                .Where(p => p.ProName.Contains(productName) )
                 .ToList();
             return View(products);
         }
@@ -95,9 +97,32 @@ namespace OnlineSportShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(model);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com");
+                    client.Authenticate("jibrilomar04@gmail.com", "ustgkusaghrgukuv");
+                    var bodyBuilder = new BodyBuilder()
+                    {
+                        HtmlBody = $"<p>{model.Name}</p> <p>{model.Email}</p> <p>{model.Subject}</p> <p>{model.Message}</p>",
+                        TextBody = "{model.Name} \r\n {model.Email} \r\n {model.Subject} \r\n {model.Message}"
+                    };
+
+                    var message = new MimeMessage
+                    {
+                        Body = bodyBuilder.ToMessageBody(),
+                    };
+                    message.From.Add(new MailboxAddress("Do Not Reply", model.Email));
+                    message.To.Add(new MailboxAddress("Testing", "jibrilomar04@gmail.com"));
+                    message.Subject = model.Subject;
+                    client.Send(message);
+
+                    client.Disconnect(true);
+                }
+                TempData["Message"] = "Thank you for your quary, We will contact you shortly";
+                return RedirectToAction(nameof(Contact));
+                //_context.Add(model);
+                //_context.SaveChanges();
+                //return RedirectToAction("Index");
             }
             return View(model);
         }

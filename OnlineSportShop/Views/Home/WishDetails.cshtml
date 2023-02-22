@@ -35,27 +35,15 @@
                     <p class="mb-4">@Model.Description</p>
 
                     <div class="d-flex align-items-center mb-4 pt-2">
-                        <div class="input-group quantity mr-3" style="width: 130px;">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary btn-minus">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" name="qty" class="form-control bg-secondary border-0 text-center" value="1">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
+                        
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                                <button class="btn btn-primary px-3" type="submit">Add To WishList</button>
+                           <button class="btn btn-primary px-3" type="submit">Add To WishList</button>
                         }
                         else
                         {
-                                <input type="button" class="btn btn-primary px-3" value="Add To Cart" onclick="location.href='@Url.Action("Login", "UserAuthentication")'" />
+                           <input type="button" class="btn btn-primary px-3" value="Add To WishList" onclick="location.href='@Url.Action("Login", "UserAuthentication")'" />
                         }
 
 

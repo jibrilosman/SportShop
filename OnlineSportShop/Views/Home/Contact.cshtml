@@ -1,4 +1,12 @@
 ﻿@model Contact
+@{
+    var msg = TempData["Message"] as string;
+}
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <div class="alert alert-success">@msg</div>
+}
 <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
