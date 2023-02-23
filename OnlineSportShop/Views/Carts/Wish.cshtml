@@ -41,6 +41,7 @@
                                 <td class="align-middle">@item.Product.ProName</td>
                                 <td class="align-middle">$@item.Product.Price</td>
                                 <td class="align-middle">
+                                    
                                     <form method="post" asp-action="ProductDetails" asp-controller="Home" asp-route-id="@item.Product.ProId">
                                         <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-shopping-cart"></i></button>
                                     </form>

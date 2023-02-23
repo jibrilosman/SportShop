@@ -53,7 +53,7 @@ namespace OnlineSportShop.Controllers
         public IActionResult SearchProduct(string productName)
         {
             var products = _context.Products
-                .Where(p => p.ProName.Contains(productName) )
+                .Where(p => p.ProName.Contains(productName))
                 .ToList();
             return View(products);
         }
