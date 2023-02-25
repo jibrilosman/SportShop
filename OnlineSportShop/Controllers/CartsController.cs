@@ -241,24 +241,12 @@ namespace OnlineSportShop.Controllers
             {
                 _context.WishLists.Remove(shopcart);
             }
+            
             _context.SaveChanges();
             return RedirectToAction(nameof(Wish));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> RemoveAllWish(int id)
-        {
-            var user = await _userManager.GetUserAsync(User);
 
-            var shopcart = _context.WishLists.FirstOrDefault(u => u.UserId == user.Id && u.ProId == id);
-
-            if (shopcart != null)
-            {
-                _context.WishLists.RemoveRange(shopcart);
-            }
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Wish));
-        }
 
 
 

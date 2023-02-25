@@ -41,10 +41,12 @@
                                 <td class="align-middle">@item.Product.ProName</td>
                                 <td class="align-middle">$@item.Product.Price</td>
                                 <td class="align-middle">
-                                    
-                                    <form method="post" asp-action="ProductDetails" asp-controller="Home" asp-route-id="@item.Product.ProId">
+
+                                    <form method="post" asp-action="ProductDetails" asp-controller="home" asp-route-id="@item.Product.ProId">
                                         <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-shopping-cart"></i></button>
+                                        @*<input type="button" class="btn btn-primary px-3" value="Add To Cart" onclick="location.href='@Url.Action("ProductDetails", "Home")/@item.Product.ProId'"/> *@
                                     </form>
+                               
                                 </td>
 
                                 <td class="align-middle">
@@ -57,7 +59,7 @@
 
                     }
 
-                    
+                                                <a asp-action="RemoveAllWish" asp-controller="carts" >Remove All</a>
                 </tbody>
             </table>
         </div>
@@ -66,3 +68,4 @@
     </div>
 </div>
 <!-- Cart End -->
+        

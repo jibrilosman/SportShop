@@ -1,5 +1,6 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
@@ -88,6 +89,8 @@ namespace OnlineSportShop.Controllers
                 .FirstOrDefault(p => p.ProId == id);
             return View(product);
         }
+
+        
         public IActionResult Contact()
         {
             return View();
@@ -111,7 +114,7 @@ namespace OnlineSportShop.Controllers
                     {
                         Body = bodyBuilder.ToMessageBody(),
                     };
-                    message.From.Add(new MailboxAddress("Do Not Reply", model.Email));
+                    message.From.Add(new MailboxAddress(model.Subject, model.Email));
                     message.To.Add(new MailboxAddress("Testing", "jibrilomar04@gmail.com"));
                     message.Subject = model.Subject;
                     client.Send(message);

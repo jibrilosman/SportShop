@@ -75,6 +75,7 @@
 
                             }
                             
+                            
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <a asp-controller="UserAuthentication" asp-action="Logout" class="nav-item nav-link active">
@@ -82,7 +83,7 @@
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                 </a>
                             }
-                            
+
                             else
                             {
                                 <a asp-controller="UserAuthentication" asp-action="Login" class="nav-item nav-link active">
@@ -99,8 +100,8 @@
                         <div class="navbar-nav mr-auto py-0">
                             @if (User.Identity.IsAuthenticated)
                             { 
-                                <span style="margin-right:5px;">Welcome</span>
-                                <p>@username </p>  
+                                <a><span style="margin-right:5px;">Welcome</span>
+                                <span>@username </span> </a> 
                             }
                          </div>
                         @if (!User.Identity.IsAuthenticated)
