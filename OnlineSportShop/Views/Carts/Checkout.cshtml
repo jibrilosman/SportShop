@@ -6,7 +6,7 @@
 @{
     string userName = User.Identity.Name;
     var subtotal = Model.Sum(i => i.Product.Price * i.Qty);
-    var hstCount = Math.Round(subtotal * Convert.ToDecimal((0.13)));
+    var hstCount = Math.Round(subtotal * Convert.ToDecimal((0.13)),2);
     var shippingCharge = Convert.ToDecimal(10);
     var total = shippingCharge + hstCount + subtotal;
     

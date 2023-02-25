@@ -5,6 +5,7 @@
     var subtotal = Model.Sum(i => i.Product.Price * i.Qty);
     var shippingCharge = Convert.ToDecimal(10);
     var total = subtotal + shippingCharge;
+    List<ShoppingCart> shoppingCarts;
 }
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
@@ -87,8 +88,9 @@
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
                             <h5>$@total </h5>
-                        </div> 
-                        <form asp-action="checkout" asp-controller="Carts">
+                        </div>
+                  
+                        <form asp-action="Checkout" asp-controller="carts">
                              <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Checkout</button>
                         </form>
                     </div>
