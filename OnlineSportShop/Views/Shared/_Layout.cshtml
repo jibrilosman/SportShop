@@ -105,8 +105,8 @@
                             }
                          </div>
                           @{
-        await Html.RenderPartialAsync("_SocialSharing", ViewData["Title"]);
-    }
+                             await Html.RenderPartialAsync("_SocialSharing", ViewData["Title"]);
+                           }
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -238,7 +238,7 @@
     <!-- Contact Javascript File -->
     <script src="~/mail/jqBootstrapValidation.min.js"></script>
     <script src="~/mail/contact.js"></script>
-
+    <!-- <script async defer src="//assets.pinterest.com/js/pinit.js"></script> -->
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
 </body>
