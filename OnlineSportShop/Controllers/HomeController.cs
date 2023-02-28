@@ -106,7 +106,8 @@ namespace OnlineSportShop.Controllers
                     client.Authenticate("jibrilomar04@gmail.com", "ustgkusaghrgukuv");
                     var bodyBuilder = new BodyBuilder()
                     {
-                        HtmlBody = $"<p>{model.Name}</p> <p>{model.Email}</p> <p>{model.Subject}</p> <p>{model.Message}</p>",
+                        //<p>{model.Name}</p> <p>{model.Email}</p> <p>{model.Subject}</p>
+                        HtmlBody = $" <p>{model.Message}</p>",
                         TextBody = "{model.Name} \r\n {model.Email} \r\n {model.Subject} \r\n {model.Message}"
                     };
 

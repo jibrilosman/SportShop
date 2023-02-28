@@ -66,6 +66,9 @@
                                     </div>
 
                                 </div>
+                                 @{
+                                     await Html.RenderPartialAsync("_SocialSharing", ViewData["Title"]);
+                                  }
                             </div>
                         </div>
 
