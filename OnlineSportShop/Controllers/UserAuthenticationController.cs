@@ -45,14 +45,11 @@ namespace OnlineSportShop.Controllers
                 var result = await _service.LoginAsync(model);
                 if (result.StatusCode == 1)
                 {
+                    TempData["msg"] = result.Message;
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            
-            else
-            {
-                
-                return RedirectToAction(nameof(Login));
+                TempData["msg"] = result.Message;
+                RedirectToAction(nameof(Login));
             }
             return View(model);
         }
